@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>520专属告白 ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "微软雅黑", sans-serif;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .card {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px 80px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .title {
+            font-size: 80px;
+            color: #ff5e7d;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffc0cb;
+        }
+        .ques-text {
+            font-size: 26px;
+            color: #555;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+        .ans-text {
+            font-size: 32px;
+            color: #ff5e7d;
+            font-weight: bold;
+            display: none;
+            line-height: 2.2;
+        }
+        .cat-img{
+            width: 120px;
+            margin:15px auto 25px;
+            border-radius:12px;
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ff5e7d;
+            transform: rotate(45deg);
+            animation: float 3s linear infinite;
+            z-index: 1;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: #ff5e7d;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before { left: -15px; top: 0; }
+        .heart::after { left: 0; top: -15px; }
+        @keyframes float {
+            0% { opacity: 1; transform: rotate(45deg) translateY(0); }
+            100% { opacity: 0; transform: rotate(45deg) translateY(-800px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="ques-text" id="questionBox">
+            你知道谁是世界上最可爱的人吗<br>
+            输入520我就告诉你
+        </div>
+        <div class="ans-text" id="answerBox">
+            当然是最最可爱的凌 ❤️
+        </div>
+        <!-- 替换成你自己的小猫图，改src里的图片名即可 -->
+        <img class="cat-img" src="cat.jpg" alt="可爱小猫">
+    </div>
+
+    <script>
+        // 漂浮爱心
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.width = Math.random() * 20 + 10 + 'px';
+            heart.style.height = heart.style.width;
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // 输入520跳转逻辑
+        window.onload = function(){
+            let input = prompt("请输入答案解锁秘密：");
+            if(input === "520"){
+                document.getElementById("questionBox").style.display = "none";
+                document.getElementById("answerBox").style.display = "block";
+            }else{
+                alert("太坏了🤔😡！");
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
